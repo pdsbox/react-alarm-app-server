@@ -15,7 +15,10 @@ const middlewares = jsonServer.defaults()
 //     res.writeHead(200, { 'Content-Type': 'text/plain' });
 //     res.end('ok');
 // })
-
+const low = require('lowdb');
+const FileSync = require('lowdb/adapters/FileSync');
+const adapter = new FileSync('data.json');
+const db = low(adapter);
 
 server.use(middlewares)
 // Add this before server.use(router)
