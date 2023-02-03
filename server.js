@@ -1,24 +1,14 @@
 // See https://github.com/typicode/json-server#module
 const jsonServer = require('json-server')
+const fs = require('fs');
+const os = require('os');
+fs.copyFile('data.json', os.tmpdir() + '/data.json', function (err) {
+    if (err) console.log(err);
+    else console.log("copy file succeed to" + os.tmpdir());
+});
 const server = jsonServer.create()
-const router = jsonServer.router('data.json')
-const middlewares = jsonServer.defaults()
-
-// const http = require('http');
-
-// const PORT = process.env.PORT || 3000;
-// const httpServer = http.createServer((req, res) => {
-//     res.setHeader('Access-Control-Allow-origin', '*');
-//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-//     res.setHeader('Access-Control-Allow-Credentials', 'true');
-
-//     res.writeHead(200, { 'Content-Type': 'text/plain' });
-//     res.end('ok');
-// })
-// const low = require('lowdb');
-// const FileSync = require('lowdb/adapters/FileSync');
-// const adapter = new FileSync('data.json');
-// const db = low(adapter);
+const router = jsonServer.router(path.resolve(os.tmpdir() + '/data.json'));
+const middlewares = jsonServer.defaults();
 
 server.use(middlewares)
 // Add this before server.use(router)
