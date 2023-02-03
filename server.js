@@ -15,17 +15,17 @@ const middlewares = jsonServer.defaults()
 //     res.writeHead(200, { 'Content-Type': 'text/plain' });
 //     res.end('ok');
 // })
-const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
-const adapter = new FileSync('data.json');
-const db = low(adapter);
+// const low = require('lowdb');
+// const FileSync = require('lowdb/adapters/FileSync');
+// const adapter = new FileSync('data.json');
+// const db = low(adapter);
 
 server.use(middlewares)
 // Add this before server.use(router)
-server.use(jsonServer.rewriter({
-    '/api/*': '/$1',
-    '/blog/:resource/:id/show': '/:resource/:id'
-}))
+// server.use(jsonServer.rewriter({
+//     '/alarm/*': '/$1',
+//     '/stopwatch/:resource/:id/show': '/:resource/:id'
+// }))
 server.use(router)
 server.listen(3000, () => {
     console.log(`JSON Server is running`)
