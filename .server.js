@@ -4,8 +4,6 @@
 const jsonServer = require('json-server')
 const fs = require('fs');
 const os = require('os');
-const path = require('path');
-
 fs.copyFile('data.json', os.tmpdir() + '/data.json', function (err) {
     if (err) console.log(err);
     else console.log("copy file succeed to" + os.tmpdir());
